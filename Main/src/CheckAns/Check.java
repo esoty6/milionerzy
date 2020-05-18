@@ -9,7 +9,7 @@ public class Check {
 
     public void goodAns(String a){
         try {
-            String line = Files.readAllLines(Paths.get("D:\\Studia\\Projekty JAVA\\milionerzy\\Main\\src\\Questions\\answers.txt")).get(pointer);
+            String line = Files.readAllLines(Paths.get("Main\\src\\Questions\\answers.txt")).get(pointer);
             pointer++;
             if(a.equals(line)) points++;
         } catch (Exception e) {
