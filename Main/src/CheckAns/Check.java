@@ -4,8 +4,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class Check {
-    int points = 0;
-    int pointer = 0;
+    private int points = 0;
+    private int pointer = 0;
 
     public void goodAns(String a){
         try {
