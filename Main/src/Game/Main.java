@@ -1,23 +1,36 @@
 package Game;
 
-import CheckAns.Check;
-import ReadFile.ReadFile;
+import JavaPane.JavaPane;
 
-import java.util.Scanner;
+import java.awt.event.WindowEvent;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class Main {
 
+    public static JavaPane window;
     public static void main(String[] args) {
-        Check ans = new Check();
-        ReadFile[] file = new ReadFile[2];
 
-        Scanner input = new Scanner(System.in);
-        for(int i = 0; i < file.length; i++) {
-            file[i] = new ReadFile();
-            file[i].importFile();
-            String answer = input.next();
-            ans.goodAns(answer);
+        int pointerA = 0;
+        int pointerC = 0;
+        String question = "";
+        String answerA = "";
+        String answerB = "";
+        String answerC = "";
+        String answerD = "";
+        String correct = "";
+
+        try {
+            question = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointerA);
+            answerA = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointerA+1);
+            answerB = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointerA+2);
+            answerC = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointerA+3);
+            answerD = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointerA+4);
+            correct = Files.readAllLines(Paths.get("Main\\src\\Questions\\answers.txt")).get(pointerC);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
-        System.out.println(ans.result());
+        window = new JavaPane(question, answerA, answerB, answerC, answerD, correct);
+        window.setLocationRelativeTo(null);
     }
 }
