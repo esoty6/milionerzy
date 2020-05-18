@@ -1,19 +1,17 @@
 package ReadFile;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
 public class ReadFile {
-    int pointer = 1;
+    int pointer = 0;
     public void importFile(){
-        BufferedReader reader;
         try {
-            int n = 1;
-            reader = new BufferedReader(new FileReader("D:\\Studia\\Projekty JAVA\\milionerzy\\Main\\src\\Questions\\questions.txt"));
-            String line = reader.readLine();
-            System.out.println(line);
-            line = reader.readLine();
-            reader.close();
+            do {
+                String line = Files.readAllLines(Paths.get("D:\\Studia\\Projekty JAVA\\milionerzy\\Main\\src\\Questions\\questions.txt")).get(pointer);
+                System.out.println(line);
+                pointer++;
+            } while (pointer%6 != 0);
         } catch (Exception e) {
             e.printStackTrace();
         }
