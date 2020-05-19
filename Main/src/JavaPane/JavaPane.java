@@ -4,6 +4,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -11,7 +12,7 @@ public class JavaPane implements ActionListener {
     private int pointer = 0;
     private int pointerC = 0;
 
-    private String question = "";
+    private String question = "Witaj w quizie";
     private String answerA = "";
     private String answerB = "";
     private String answerC = "";
@@ -44,10 +45,12 @@ public class JavaPane implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        ReadFile();
-        pointer += 6;
-        pointerC++;
-        labl.setText(question);
+        if(pointer < 11) {
+            ReadFile();
+            pointer += 6;
+            pointerC++;
+            labl.setText(question);
+        }
     }
 
     public void ReadFile() {
