@@ -95,7 +95,4 @@ public class JavaPane implements ActionListener {
             e.printStackTrace();
         }
     }
-    private String value(JButton obj){
-        return obj.getText();
-    }
 }
