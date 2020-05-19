@@ -21,37 +21,64 @@ public class JavaPane implements ActionListener {
     private String answerD = "";
     private String correct = "";
 
-    JLabel labl;
+    JLabel questionAsked;
     JFrame frame;
     JPanel panel;
+    JButton start, a, b, c, d, e;
 
     public JavaPane() {
         frame = new JFrame();
-        JButton button = new JButton("Rozpocznij gre");
-        button.addActionListener(this);
+        start = new JButton("Rozpocznij gre");
 
-        labl = new JLabel(question);
+        start.addActionListener(this);
+
+        a = new JButton(answerA);
+        b = new JButton(answerB);
+        c = new JButton(answerC);
+        d = new JButton(answerD);
+
+        a.addActionListener(this);
+        b.addActionListener(this);
+        c.addActionListener(this);
+        d.addActionListener(this);
+
+        questionAsked = new JLabel(question);
 
         panel = new JPanel();
-        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
         panel.setLayout(new GridLayout(0 ,1));
-        panel.add(button);
-        panel.add(labl);
+        panel.add(questionAsked);
+        panel.add(start);
 
         frame.add(panel, BorderLayout.CENTER);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setSize(400, 400);
+        frame.setLocationRelativeTo(null);
         frame.setTitle("Milionerzy");
-        frame.pack();
         frame.setVisible(true);
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
+        panel.remove(start);
+
         if(pointer < file.read()) {
+
             ReadFile();
+
             pointer += 6;
             pointerC++;
-            labl.setText(question);
+
+            questionAsked.setText(question);
+            a.setText(answerA);
+            b.setText(answerB);
+            c.setText(answerC);
+            d.setText(answerD);
+
+            panel.add(a);
+            panel.add(b);
+            panel.add(c);
+            panel.add(d);
         }
     }
 
@@ -67,5 +94,8 @@ public class JavaPane implements ActionListener {
         catch (Exception e) {
             e.printStackTrace();
         }
+    }
+    private String value(JButton obj){
+        return obj.getText();
     }
 }
