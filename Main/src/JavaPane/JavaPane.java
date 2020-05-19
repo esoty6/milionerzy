@@ -19,7 +19,7 @@ public class JavaPane implements ActionListener {
     private String answerB = "";
     private String answerC = "";
     private String answerD = "";
-    private String correct = "";
+    private String correct = "0";
 
     JLabel questionAsked;
     JFrame frame;
@@ -32,10 +32,20 @@ public class JavaPane implements ActionListener {
 
         start.addActionListener(this);
 
-        a = new JButton(answerA);
-        b = new JButton(answerB);
-        c = new JButton(answerC);
-        d = new JButton(answerD);
+        a = new JButton();
+        b = new JButton();
+        c = new JButton();
+        d = new JButton();
+
+        a.setText(answerA);
+        b.setText(answerB);
+        c.setText(answerC);
+        d.setText(answerD);
+
+        a.setName("a");
+        b.setName("b");
+        c.setName("c");
+        d.setName("d");
 
         a.addActionListener(this);
         b.addActionListener(this);
@@ -43,10 +53,11 @@ public class JavaPane implements ActionListener {
         d.addActionListener(this);
 
         questionAsked = new JLabel(question);
+        questionAsked.setBounds(50, 50, 100, 100);
 
         panel = new JPanel();
         panel.setBorder(BorderFactory.createEmptyBorder(10, 30, 10, 30));
-        panel.setLayout(new GridLayout(0 ,1));
+
         panel.add(questionAsked);
         panel.add(start);
 
@@ -60,7 +71,9 @@ public class JavaPane implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
+
         panel.remove(start);
+        panel.setLayout(new GridLayout(0 ,1));
 
         if(pointer < file.read()) {
 
@@ -80,6 +93,13 @@ public class JavaPane implements ActionListener {
             panel.add(c);
             panel.add(d);
         }
+    }
+
+    private String status(ActionEvent e){
+        if(((JButton)e.getSource()).getName().equals(correct)) {
+            return "Git";
+        }
+        return "Nie git";
     }
 
     public void ReadFile() {
