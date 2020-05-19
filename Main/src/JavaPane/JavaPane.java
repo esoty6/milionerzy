@@ -1,16 +1,18 @@
 package JavaPane;
 
+import ReadFile.ReadFile;
+
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.FileReader;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
 public class JavaPane implements ActionListener {
     private int pointer = 0;
     private int pointerC = 0;
+    private ReadFile file = new ReadFile();
 
     private String question = "Witaj w quizie";
     private String answerA = "";
@@ -45,7 +47,7 @@ public class JavaPane implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        if(pointer < 11) {
+        if(pointer < file.read()) {
             ReadFile();
             pointer += 6;
             pointerC++;
