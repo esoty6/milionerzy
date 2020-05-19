@@ -4,77 +4,63 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 
-public class JavaPane extends JFrame {
+public class JavaPane implements ActionListener {
+    private int pointer = 0;
+    private int pointerC = 0;
 
-    private JPanel btnpanel;
+    private String question = "";
+    private String answerA = "";
+    private String answerB = "";
+    private String answerC = "";
+    private String answerD = "";
+    private String correct = "";
 
-    public JavaPane(String qst, String ansA, String ansB, String ansC, String ansD, String answer){
-        super("Milionerzy");
-        JPanel btnpanel = new BtnPanel(qst, ansA, ansB, ansC, ansD, answer);
-        add(btnpanel);
+    JLabel labl;
+    JFrame frame;
+    JPanel panel;
 
-        setSize(400, 400);
-        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        setVisible(true);
-    }
-}
+    public JavaPane() {
+        frame = new JFrame();
+        JButton button = new JButton("Rozpocznij gre");
+        button.addActionListener(this);
 
-class BtnPanel extends JPanel implements ActionListener {
+        labl = new JLabel(question);
 
-    private JLabel qst;
-    private JButton a, b, c, d;
-    private String correct, q1, q2, q3, q4;
+        panel = new JPanel();
+        panel.setBorder(BorderFactory.createEmptyBorder(30, 30, 10, 30));
+        panel.setLayout(new GridLayout(0 ,1));
+        panel.add(button);
+        panel.add(labl);
 
-    public BtnPanel(String question, String ansA, String ansB, String ansC, String ansD, String answer){
-        qst = new JLabel(question);
-
-        a = new JButton(ansA);
-        b = new JButton(ansB);
-        c = new JButton(ansC);
-        d = new JButton(ansD);
-
-        this.q1 = "a";
-        this.q2 = "b";
-        this.q3 = "c";
-        this.q4 = "d";
-
-        this.correct = answer;
-
-        a.addActionListener(this);
-        b.addActionListener(this);
-        c.addActionListener(this);
-        d.addActionListener(this);
-
-        setLayout(new FlowLayout());
-
-        add(qst);
-        add(a);
-        add(b);
-        add(c);
-        add(d);
+        frame.add(panel, BorderLayout.CENTER);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setTitle("Milionerzy");
+        frame.pack();
+        frame.setVisible(true);
     }
 
     @Override
-    public void actionPerformed(ActionEvent e){
-        Object src = e.getSource();
+    public void actionPerformed(ActionEvent e) {
+        ReadFile();
+        pointer += 6;
+        pointerC++;
+        labl.setText(question);
+    }
 
-        if (src == a){
-            if (q1.equals(correct)){
-                JOptionPane.showMessageDialog(null, "Dobrze!");
-            }
-        }if (src == b){
-            if (q2.equals(correct)){
-                JOptionPane.showMessageDialog(null, "Dobrze!");
-            }
-        }if (src == c){
-            if (q3.equals(correct)){
-                JOptionPane.showMessageDialog(null, "Dobrze!");
-            }
-        }if (src == d){
-            if (q4.equals(correct)){
-                JOptionPane.showMessageDialog(null, "Dobrze!");
-            }
+    public void ReadFile() {
+        try {
+            question = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointer);
+            answerA = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointer + 1);
+            answerB = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointer + 2);
+            answerC = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointer + 3);
+            answerD = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointer + 4);
+            correct = Files.readAllLines(Paths.get("Main\\src\\Questions\\answers.txt")).get(pointerC);
+        }
+        catch (Exception e) {
+            e.printStackTrace();
         }
     }
 }

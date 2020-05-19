@@ -1,7 +1,5 @@
 package ReadFile;
 
-import JavaPane.JavaPane;
-
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -28,7 +26,5 @@ public class ReadFile {
         catch (Exception e) {
             e.printStackTrace();
         }
-
-        JavaPane window = new JavaPane(question, answerA, answerB, answerC, answerD, correct);
     }
 }
