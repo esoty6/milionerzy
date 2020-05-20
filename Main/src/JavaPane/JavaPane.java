@@ -12,7 +12,7 @@ import java.nio.file.Paths;
 public class JavaPane implements ActionListener {
     private int pointer = 0;
     private int pointerC = 0;
-    private ReadFile file = new ReadFile();
+    private final ReadFile file = new ReadFile();
 
     private String question = "Witaj w quizie";
     private String answerA = "";
@@ -24,7 +24,7 @@ public class JavaPane implements ActionListener {
     JLabel questionAsked;
     JFrame frame;
     JPanel panel;
-    JButton start, a, b, c, d, e;
+    JButton start, a, b, c, d;
 
     public JavaPane() {
         frame = new JFrame();
@@ -47,10 +47,10 @@ public class JavaPane implements ActionListener {
         c.setName("c");
         d.setName("d");
 
-        a.addActionListener(this);
-        b.addActionListener(this);
-        c.addActionListener(this);
-        d.addActionListener(this);
+        a.addActionListener(this::actionPerformedA);
+        b.addActionListener(this::actionPerformedB);
+        c.addActionListener(this::actionPerformedC);
+        d.addActionListener(this::actionPerformedD);
 
         questionAsked = new JLabel(question);
         questionAsked.setBounds(50, 50, 100, 100);
@@ -94,12 +94,97 @@ public class JavaPane implements ActionListener {
             panel.add(d);
         }
     }
+    public void actionPerformedA(ActionEvent e) {
+        if(a.getName().equals(correct))
+            System.out.println("Gitówa");
 
-    private String status(ActionEvent e){
-        if(((JButton)e.getSource()).getName().equals(correct)) {
-            return "Git";
+        if(pointer < file.read()) {
+
+            ReadFile();
+
+            pointer += 6;
+            pointerC++;
+
+            questionAsked.setText(question);
+            a.setText(answerA);
+            b.setText(answerB);
+            c.setText(answerC);
+            d.setText(answerD);
+
+            panel.add(a);
+            panel.add(b);
+            panel.add(c);
+            panel.add(d);
         }
-        return "Nie git";
+    }
+    public void actionPerformedB(ActionEvent e) {
+        if(b.getName().equals(correct))
+            System.out.println("Gitówa");
+
+        if(pointer < file.read()) {
+
+            ReadFile();
+
+            pointer += 6;
+            pointerC++;
+
+            questionAsked.setText(question);
+            a.setText(answerA);
+            b.setText(answerB);
+            c.setText(answerC);
+            d.setText(answerD);
+
+            panel.add(a);
+            panel.add(b);
+            panel.add(c);
+            panel.add(d);
+        }
+    }
+    public void actionPerformedC(ActionEvent e) {
+        if(c.getName().equals(correct))
+            System.out.println("Gitówa");
+
+        if(pointer < file.read()) {
+
+            ReadFile();
+
+            pointer += 6;
+            pointerC++;
+
+            questionAsked.setText(question);
+            a.setText(answerA);
+            b.setText(answerB);
+            c.setText(answerC);
+            d.setText(answerD);
+
+            panel.add(a);
+            panel.add(b);
+            panel.add(c);
+            panel.add(d);
+        }
+    }
+    public void actionPerformedD(ActionEvent e) {
+        if(d.getName().equals(correct))
+            System.out.println("Gitówa");
+
+        if(pointer < file.read()) {
+
+            ReadFile();
+
+            pointer += 6;
+            pointerC++;
+
+            questionAsked.setText(question);
+            a.setText(answerA);
+            b.setText(answerB);
+            c.setText(answerC);
+            d.setText(answerD);
+
+            panel.add(a);
+            panel.add(b);
+            panel.add(c);
+            panel.add(d);
+        }
     }
 
     public void ReadFile() {
