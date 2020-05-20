@@ -6,6 +6,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 
@@ -96,7 +97,9 @@ public class JavaPane implements ActionListener {
     }
     public void actionPerformedA(ActionEvent e) {
         if(a.getName().equals(correct))
-            System.out.println("Gitówa");
+            System.out.println("Poprawna odpowiedz");
+        else
+            System.out.println("Bledna odpowiedz");
 
         if(pointer < file.read()) {
 
@@ -119,7 +122,9 @@ public class JavaPane implements ActionListener {
     }
     public void actionPerformedB(ActionEvent e) {
         if(b.getName().equals(correct))
-            System.out.println("Gitówa");
+            System.out.println("Poprawna odpowiedz");
+        else
+            System.out.println("Bledna odpowiedz");
 
         if(pointer < file.read()) {
 
@@ -142,7 +147,9 @@ public class JavaPane implements ActionListener {
     }
     public void actionPerformedC(ActionEvent e) {
         if(c.getName().equals(correct))
-            System.out.println("Gitówa");
+            System.out.println("Poprawna odpowiedz");
+        else
+            System.out.println("Bledna odpowiedz");
 
         if(pointer < file.read()) {
 
@@ -165,7 +172,9 @@ public class JavaPane implements ActionListener {
     }
     public void actionPerformedD(ActionEvent e) {
         if(d.getName().equals(correct))
-            System.out.println("Gitówa");
+            System.out.println("Poprawna odpowiedz");
+        else
+            System.out.println("Bledna odpowiedz");
 
         if(pointer < file.read()) {
 
@@ -196,7 +205,7 @@ public class JavaPane implements ActionListener {
             answerD = Files.readAllLines(Paths.get("Main\\src\\Questions\\questions.txt")).get(pointer + 4);
             correct = Files.readAllLines(Paths.get("Main\\src\\Questions\\answers.txt")).get(pointerC);
         }
-        catch (Exception e) {
+        catch (IOException e) {
             e.printStackTrace();
         }
     }
