@@ -143,6 +143,17 @@ public class JavaPane implements ActionListener {
             panel.add(b);
             panel.add(c);
             panel.add(d);
+        } else {
+            panel.remove(a);
+            panel.remove(b);
+            panel.remove(c);
+            panel.remove(d);
+
+            panel.repaint();
+
+            questionAsked.setText("Dzieki za gre!");
+            panel.setLayout(new FlowLayout());
+            panel.add(questionAsked);
         }
     }
     public void actionPerformedC(ActionEvent e) {
